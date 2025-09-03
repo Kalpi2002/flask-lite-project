@@ -1,1 +1,18 @@
-venv/__pycache__/*.pyc*.db.env instance/
+# Python virtual environment
+venv/
+
+# Python compiled files
+*.pyc
+__pycache__/
+
+# SQLite database (optional: include if you don’t want to push DB)
+*.db
+
+# IDE/editor files
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+
