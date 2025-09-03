@@ -19,17 +19,6 @@ The project includes a single core entity with full CRUD functionality, simple v
 - Jinja2 Templates
 - Bootstrap (via CDN)
   
-## 📂 Project Structure
-flask-lite-Project/
-├── app.py # Flask app creation and routes
-├── models.py # SQLAlchemy models
-├── templates/ # Jinja2 templates (base, list, form)
-├── static/ # CSS/JS files (if needed)
-├── seed.py # Script to create DB and insert sample data
-├── requirements.txt # Dependencies
-├── README.md # Project documentation
-└── .gitignore
-  
 ## 🚀 Setup & Run
 
 1.  **Clone the repository**
