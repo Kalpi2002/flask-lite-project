@@ -1,27 +1,24 @@
-from flask import Flask, render_template, redirect, url_for
+# app.py (only the new/changed parts)
+
+from flask import Flask, render_template, redirect, url_for, request, flash   # make sure flash is imported
 from models import db, Task
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tasks.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.secret_key = 'dev-secret'  # Needed for flash messages later
+app.secret_key = 'dev-secret'  # required for flash messages
 
-# Initialize DB
 db.init_app(app)
 
-# Create tables if they don't exist
-with app.app_context():
-    db.create_all()
+# ... keep your existing routes ...
 
-@app.route('/')
-def home():
+@app.route('/tasks/<int:task_id>/delete', methods=['POST'])
+def delete_task(task_id):
+    task = Task.query.get_or_404(task_id)
+    db.session.delete(task)
+    db.session.commit()
+    flash(f'Task "{task.title}" deleted.')
     return redirect(url_for('list_tasks'))
-
-@app.route('/tasks')
-def list_tasks():
-    tasks = Task.query.all()
-    return render_template('list.html', tasks=tasks)
 
 if __name__ == '__main__':
     app.run(debug=True)
-
