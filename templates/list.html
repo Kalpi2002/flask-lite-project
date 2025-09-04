@@ -1,26 +1,47 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% block title %}Task List{% endblock %}
 
 {% block content %}
-<h2>Task List</h2>
+<h2>Your Tasks</h2>
 
-<!-- Search box -->
-<form method="get" action="/tasks" style="margin-bottom:15px;">
-  <input type="text" name="q" placeholder="Search by title" value="{{ query or '' }}">
-  <button type="submit">Search</button>
+<!-- Add Task Form -->
+<form method="post" action="{{ url_for('add_task') }}" style="margin-bottom: 1rem;">
+  <input type="text" name="title" placeholder="Task title" required>
+  <input type="text" name="description" placeholder="Description (optional)">
+  <button type="submit">Add Task</button>
 </form>
 
-<!-- Table with tasks -->
-<table border="1" cellpadding="8" cellspacing="0">
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Created At</th>
-  </tr>
-  {% for task in tasks %}
-  <tr>
-    <td>{{ task.title }}</td>
-    <td>{{ task.description }}</td>
-    <td>{{ task.created_at }}</td>
-  </tr>
-  {% endfor %}
+{% if tasks %}
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="width: 30%;">Title</th>
+      <th>Description</th>
+      <th style="width: 180px;">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for task in tasks %}
+    <tr>
+      <td>{{ task.title }}</td>
+      <td>{{ task.description or "—" }}</td>
+      <td>
+        <!-- Link to server-side confirm page -->
+        <a href="{{ url_for('delete_confirm', task_id=task.id) }}" class="btn">Confirm Delete</a>
+
+        <!-- Inline delete form with JS confirmation -->
+        <form method="post"
+              action="{{ url_for('delete_task', task_id=task.id) }}"
+              style="display:inline;"
+              onsubmit="return confirm('Delete task: {{ task.title | e }}? This cannot be undone.');">
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
 </table>
+{% else %}
+<p>No tasks found. Add your first task above!</p>
+{% endif %}
+{% endblock %}
