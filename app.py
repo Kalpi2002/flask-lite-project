@@ -35,17 +35,19 @@ def create_task():
         title = request.form.get('title', '').strip()
         description = request.form.get('description', '').strip()
 
+        # Validation
         if not title or not description:
             flash('Both title and description are required.', 'danger')
             return render_template('form.html', task=None)
 
+        # Save task
         new_task = Task(title=title, description=description)
         db.session.add(new_task)
         db.session.commit()
         flash('Task created successfully.', 'success')
         return redirect(url_for('list_tasks'))
 
-    return render_template('form.html', task=None)
+    return render_template('form.html', task=None, action="Create")
 
 
 @app.route('/tasks/<int:task_id>/edit', methods=['GET', 'POST'])
@@ -66,7 +68,7 @@ def edit_task(task_id):
         flash('Task updated successfully.', 'success')
         return redirect(url_for('list_tasks'))
 
-    return render_template('form.html', task=task)
+    return render_template('form.html', task=task, action="Edit")
 
 
 if __name__ == '__main__':
