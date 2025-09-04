@@ -45,3 +45,24 @@ def create_task():
 
 if __name__ == '__main__':
     app.run(debug=True)
+cat > app.py <<'PY'
+from flask import Flask, render_template, request
+from models import db, Task
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tasks.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
+
+@app.route('/')
+def home():
+    q = request.args.get('q')
+    if q:
+        tasks = Task.query.filter(Task.title.contains(q)).all()
+    else:
+        tasks = Task.query.all()
+    return render_template('list.html', tasks=tasks, query=q)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+PY
