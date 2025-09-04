@@ -1,47 +1,76 @@
-from flask import render_template, request, redirect, url_for, flash
-from flask import Flask
+from flask import Flask, render_template, request, redirect, url_for, flash
 from models import db, Task
+import os
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY", "dev-secret")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tasks.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.secret_key = "your_secret_key_here"  # Needed for flash messages
+
 db.init_app(app)
 
-# Create tables
+# Ensure tables exist
 with app.app_context():
     db.create_all()
 
+
 @app.route('/')
 def home():
-    return 'Hello, Flask!'
+    return redirect(url_for('list_tasks'))
+
 
 @app.route('/tasks')
 def list_tasks():
-    tasks = Task.query.all()
-    return '<br>'.join([f"{t.id} - {t.title}" for t in tasks])
+    q = request.args.get("q", "").strip()
+    if q:
+        tasks = Task.query.filter(Task.title.contains(q)).order_by(Task.created_at.desc()).all()
+    else:
+        tasks = Task.query.order_by(Task.created_at.desc()).all()
+    return render_template("list.html", tasks=tasks, q=q)
 
-@app.route('/create', methods=['GET', 'POST'])
+
+@app.route('/tasks/create', methods=['GET', 'POST'])
 def create_task():
     if request.method == 'POST':
-        title = request.form['title']
-        description = request.form['description']
+        title = request.form.get('title', '').strip()
+        description = request.form.get('description', '').strip()
 
-        # Server-side validation
-        if not title.strip():
-            flash("Title is required!", "error")
-            return redirect(url_for('create_task'))
+        # Validation
+        if not title or not description:
+            flash('Both title and description are required.', 'danger')
+            return render_template('form.html', task=None)
 
-        # Save new task
+        # Save task
         new_task = Task(title=title, description=description)
         db.session.add(new_task)
         db.session.commit()
-
-        flash("Task created successfully!", "success")
+        flash('Task created successfully.', 'success')
         return redirect(url_for('list_tasks'))
 
-    return render_template('form.html', action="Create", task=None)
+    return render_template('form.html', task=None, action="Create")
+
+
+@app.route('/tasks/<int:task_id>/edit', methods=['GET', 'POST'])
+def edit_task(task_id):
+    task = Task.query.get_or_404(task_id)
+
+    if request.method == 'POST':
+        title = request.form.get('title', '').strip()
+        description = request.form.get('description', '').strip()
+
+        if not title or not description:
+            flash('Both title and description are required.', 'danger')
+            return render_template('form.html', task=task)
+
+        task.title = title
+        task.description = description
+        db.session.commit()
+        flash('Task updated successfully.', 'success')
+        return redirect(url_for('list_tasks'))
+
+    return render_template('form.html', task=task, action="Edit")
 
 
 if __name__ == '__main__':
     app.run(debug=True)
+
