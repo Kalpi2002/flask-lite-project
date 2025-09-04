@@ -1,24 +1,26 @@
-cat > templates/list.html <<'HTML'
 {% extends 'base.html' %}
 
 {% block content %}
 <h2>Task List</h2>
 
-<form method="get" action="/">
+<!-- Search box -->
+<form method="get" action="/tasks" style="margin-bottom:15px;">
   <input type="text" name="q" placeholder="Search by title" value="{{ query or '' }}">
   <button type="submit">Search</button>
 </form>
 
-<table border='1'>
-<tr><th>Title</th><th>Description</th><th>Created At</th></tr>
-{% for task in tasks %}
-<tr>
-  <td>{{ task.title }}</td>
-  <td>{{ task.description }}</td>
-  <td>{{ task.created_at }}</td>
-</tr>
-{% endfor %}
+<!-- Table with tasks -->
+<table border="1" cellpadding="8" cellspacing="0">
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Created At</th>
+  </tr>
+  {% for task in tasks %}
+  <tr>
+    <td>{{ task.title }}</td>
+    <td>{{ task.description }}</td>
+    <td>{{ task.created_at }}</td>
+  </tr>
+  {% endfor %}
 </table>
-{% endblock %}
-HTML
-
