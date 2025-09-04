@@ -1,6 +1,30 @@
-<th>Actions</th>
-<td>
-  <a href="{{ url_for('delete_task', task_id=task.id) }}" class="btn btn-sm btn-outline-danger">
-    Delete
-  </a>
-</td>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Task Manager{% endblock %}</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem auto; max-width: 800px; padding: 1rem; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th, td { padding: 0.5rem; border-bottom: 1px solid #ddd; text-align: left; }
+    .btn { padding: 0.3rem 0.6rem; text-decoration: none; border: 1px solid #ccc; border-radius: 4px; }
+    .btn-danger { background: #fdd; border-color: #f99; }
+    .flash.success { background: #e6ffe6; padding: 0.5rem; border: 1px solid #b3ffb3; margin: 0.5rem 0; }
+    .flash.error { background: #ffe6e6; padding: 0.5rem; border: 1px solid #ffb3b3; margin: 0.5rem 0; }
+  </style>
+</head>
+<body>
+  <h1>Task Manager</h1>
+  
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, msg in messages %}
+        <div class="flash {{ category }}">{{ msg }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  
+  {% block content %}{% endblock %}
+</body>
+</html>
+
