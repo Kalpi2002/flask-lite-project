@@ -1,47 +1,35 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% block title %}Task List{% endblock %}
 
 {% block content %}
-<h2>Your Tasks</h2>
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2 class="fw-bold text-primary">📋 Task List</h2>
+</div>
 
-<!-- Add Task Form -->
-<form method="post" action="{{ url_for('add_task') }}" style="margin-bottom: 1rem;">
-  <input type="text" name="title" placeholder="Task title" required>
-  <input type="text" name="description" placeholder="Description (optional)">
-  <button type="submit">Add Task</button>
+<!-- Search form -->
+<form class="input-group mb-4" method="get" action="{{ url_for('task_list') }}">
+  <input class="form-control" name="q" placeholder="Search tasks..." value="{{ q }}">
+  <button class="btn btn-outline-primary" type="submit">Search</button>
 </form>
 
-{% if tasks %}
-<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse: collapse;">
-  <thead>
-    <tr>
-      <th style="width: 30%;">Title</th>
-      <th>Description</th>
-      <th style="width: 180px;">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for task in tasks %}
-    <tr>
-      <td>{{ task.title }}</td>
-      <td>{{ task.description or "—" }}</td>
-      <td>
-        <!-- Link to server-side confirm page -->
-        <a href="{{ url_for('delete_confirm', task_id=task.id) }}" class="btn">Confirm Delete</a>
-
-        <!-- Inline delete form with JS confirmation -->
-        <form method="post"
-              action="{{ url_for('delete_task', task_id=task.id) }}"
-              style="display:inline;"
-              onsubmit="return confirm('Delete task: {{ task.title | e }}? This cannot be undone.');">
-          <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-{% else %}
-<p>No tasks found. Add your first task above!</p>
-{% endif %}
+<!-- Task list -->
+<div class="row g-3">
+  {% for t in tasks %}
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title text-dark">{{ t.title }}</h5>
+          <p class="card-text text-muted">{{ t.description or 'No description' }}</p>
+          <p class="small text-secondary">🕒 {{ t.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <div class="col-12">
+      <div class="alert alert-info text-center shadow-sm">
+        No tasks found. Try creating one!
+      </div>
+    </div>
+  {% endfor %}
+</div>
 {% endblock %}
