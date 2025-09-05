@@ -33,18 +33,18 @@ The project is built using **Flask, SQLAlchemy, SQLite, Jinja2, and Bootstrap 5*
 
 ## Project Structure
 project_root/
-├─ app.py # Flask app with routes
-├─ models.py # SQLAlchemy Task model
-├─ seed.py # Seed script to populate DB
-├─ requirements.txt # Project dependencies
-├─ README.md # This file
-├─ .gitignore
-├─ templates/
-│ ├─ base.html
-│ ├─ list.html
-│ ├─ form.html
-│ └─ delete_confirm.html
-└─ static/ # Optional for CSS/JS
+-├─ app.py # Flask app with routes
+-├─ models.py # SQLAlchemy Task model
+-├─ seed.py # Seed script to populate DB
+-├─ requirements.txt # Project dependencies
+-├─ README.md # This file
+-├─ .gitignore
+-├─ templates/
+-│ ├─ base.html
+-│ ├─ list.html
+-│ ├─ form.html
+-│ └─ delete_confirm.html
+-└─ static/ # Optional for CSS/JS
   
 ## 🚀 Setup & Run
 
@@ -85,12 +85,12 @@ project_root/
     
 ## 🚀 Contribution Table
 
-Member	                  Contribution
-K.E. Kumarasinghe (Lead)	Repo setup, DB config, seed script, README, Create form
-R.M.C.N. Abeyvickrama	    Edit form, Templates & CSS
-Monali Dissanayake	      Search/filter functionality
-P.N. Wickramarathna	      List page layout & functionality
-W.D.N.O. Wanniarachchi	  Delete feature with confirmation
+- Member	                  Contribution
+- K.E. Kumarasinghe (Lead)	Repo setup, DB config, seed script, README, Create form
+- R.M.C.N. Abeyvickrama	    Edit form, Templates & CSS
+- Monali Dissanayake	      Search/filter functionality
+- P.N. Wickramarathna	      List page layout & functionality
+- W.D.N.O. Wanniarachchi	  Delete feature with confirmation
 
 ## 📈 Progress Log
 
