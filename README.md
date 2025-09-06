@@ -83,7 +83,7 @@ project_root/
     python app.py
     ```
     The application will be running at `http://127.0.0.1:5000`.
-    Open in browser http://127.0.0.1:5000/tasks
+   
     
 ## 🚀 Contribution Table
 
