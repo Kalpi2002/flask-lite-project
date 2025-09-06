@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
-from models import db, Task   # assumes a models.py with SQLAlchemy Task model
+from models import db, Task   # your existing models.py
 from pathlib import Path
 
 app = Flask(__name__)
@@ -21,11 +21,12 @@ def task_list():
         tasks = Task.query.order_by(Task.id.desc()).all()
     return render_template("list.html", tasks=tasks, q=q)
 
-# ----- ADD -----
+# ----- ADD TASK -----
 @app.route("/task/add", methods=["POST"])
 def add_task():
     title = request.form.get("title", "").strip()
-    description = request.form.get("description", "").strip()
+    # Ensure description is never empty to match nullable=False
+    description = request.form.get("description", "").strip() or "—"
     if not title:
         flash("Title is required", "error")
         return redirect(url_for("task_list"))
@@ -35,7 +36,7 @@ def add_task():
     flash("Task added", "success")
     return redirect(url_for("task_list"))
 
-# ----- DELETE -----
+# ----- DELETE TASK -----
 # 1) Confirm page (GET)
 @app.route("/task/<int:task_id>/delete", methods=["GET"])
 def delete_confirm(task_id):
