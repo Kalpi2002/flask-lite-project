@@ -22,17 +22,23 @@ def task_list():
     return render_template("list.html", tasks=tasks, q=q)
 
 # ----- ADD TASK -----
+# GET route to show empty Add form
+@app.route("/task/add", methods=["GET"])
+def add_task_form():
+    return render_template("form.html", action="Add Task")
+
+# POST route to add new task
 @app.route("/task/add", methods=["POST"])
 def add_task():
     title = request.form.get("title", "").strip()
     description = request.form.get("description", "").strip() or "—"
     if not title:
         flash("Title is required", "error")
-        return redirect(url_for("task_list"))
+        return redirect(url_for("add_task_form"))
     t = Task(title=title, description=description)
     db.session.add(t)
     db.session.commit()
-    flash("Task added", "success")
+    flash("Task added successfully", "success")
     return redirect(url_for("task_list"))
 
 # ----- EDIT TASK -----
@@ -72,3 +78,4 @@ def delete_task(task_id):
 # ----------------------------------
 if __name__ == "__main__":
     app.run(debug=True, host="127.0.0.1", port=5000)
+
