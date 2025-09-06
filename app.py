@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
-from models import db, Task   # your existing models.py
+from models import db, Task
 from pathlib import Path
 
 app = Flask(__name__)
@@ -25,7 +25,6 @@ def task_list():
 @app.route("/task/add", methods=["POST"])
 def add_task():
     title = request.form.get("title", "").strip()
-    # Ensure description is never empty to match nullable=False
     description = request.form.get("description", "").strip() or "—"
     if not title:
         flash("Title is required", "error")
@@ -36,14 +35,32 @@ def add_task():
     flash("Task added", "success")
     return redirect(url_for("task_list"))
 
+# ----- EDIT TASK -----
+@app.route("/task/<int:task_id>/edit", methods=["GET"])
+def edit_task_form(task_id):
+    task = Task.query.get_or_404(task_id)
+    return render_template("form.html", task=task, action="Edit Task")
+
+@app.route("/task/<int:task_id>/edit", methods=["POST"])
+def edit_task(task_id):
+    task = Task.query.get_or_404(task_id)
+    title = request.form.get("title", "").strip()
+    description = request.form.get("description", "").strip() or "—"
+    if not title:
+        flash("Title is required", "error")
+        return redirect(url_for("edit_task_form", task_id=task.id))
+    task.title = title
+    task.description = description
+    db.session.commit()
+    flash("Task updated successfully", "success")
+    return redirect(url_for("task_list"))
+
 # ----- DELETE TASK -----
-# 1) Confirm page (GET)
 @app.route("/task/<int:task_id>/delete", methods=["GET"])
 def delete_confirm(task_id):
     task = Task.query.get_or_404(task_id)
     return render_template("delete_confirm.html", task=task)
 
-# 2) Delete action (POST)
 @app.route("/task/<int:task_id>/delete", methods=["POST"])
 def delete_task(task_id):
     task = Task.query.get_or_404(task_id)
