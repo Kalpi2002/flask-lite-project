@@ -1,16 +1,18 @@
 {% extends "base.html" %}
+{% block title %}{{ action or "Add Task" }}{% endblock %}
+
 {% block content %}
-<h2>{{ action }} Task</h2>
-<form method="POST">
-    <div class="mb-3">
-        <label class="form-label">Title</label>
-        <input type="text" name="title" class="form-control" value="{{ task.title if task else '' }}">
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Description</label>
-        <textarea name="description" class="form-control">{{ task.description if task else '' }}</textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">{{ action }}</button>
-    <a href="{{ url_for('list_tasks') }}" class="btn btn-secondary">Cancel</a>
+<h2>{{ action or "Add Task" }}</h2>
+<form method="post" action="{{ url_for('add_task') if not task else url_for('edit_task', task_id=task.id) }}">
+  <div class="mb-3">
+    <label>Title</label>
+    <input type="text" name="title" class="form-control" value="{{ task.title if task else '' }}">
+  </div>
+  <div class="mb-3">
+    <label>Description</label>
+    <textarea name="description" class="form-control">{{ task.description if task else '' }}</textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">{{ action or "Add Task" }}</button>
+  <a href="{{ url_for('task_list') }}" class="btn btn-secondary">Cancel</a>
 </form>
 {% endblock %}
