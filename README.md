@@ -47,6 +47,19 @@ project_root/
 │ └─ delete_confirm.html
 └─ static/ # Optional for CSS/JS
 ~~~
+## 📸 Screenshots
+
+### 🏠 Task List Page
+![Task List](screenshots/task-list.png)
+
+### ➕ Add Task Form
+![Add Task](screenshots/add-task.png)
+
+### 📝 Edit Task Form
+![Edit Task](screenshots/edit-task.png)
+
+### ❌ Delete Confirmation
+![Delete Task](screenshots/delete-task.png)
 
 ## 🚀 Setup & Run
 
