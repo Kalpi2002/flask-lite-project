@@ -34,6 +34,7 @@ The project is built using **Flask, SQLAlchemy, SQLite, Jinja2, and Bootstrap 5*
 ## Project Structure
 ~~~
 project_root/
+├─ tasks.db
 ├─ app.py # Flask app with routes
 ├─ models.py # SQLAlchemy Task model
 ├─ seed.py # Seed script to populate DB
@@ -46,6 +47,7 @@ project_root/
 │ ├─ form.html
 │ └─ delete_confirm.html
 └─ static/ # Optional for CSS/JS
+
 ~~~
 ## 📸 Screenshots
 
