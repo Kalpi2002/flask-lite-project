@@ -116,7 +116,7 @@ project_root/
 - P.N. Wickramarathna	      -List page layout & functionality
 - W.D.N.O. Wanniarachchi	  -Delete feature with confirmation
   
-📋 Project Board
+## 📋 Project Board
 
 We use a GitHub Project Board to track the progress of the Flask Lite Project.  
 All tasks/features are represented as cards and linked to their respective branches and issues.  
