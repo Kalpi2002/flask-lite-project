@@ -50,16 +50,16 @@ project_root/
 ## 📸 Screenshots
 
 ### 🏠 Task List Page
-![Task List](screenshots/task-list.png)
+![Task List](screenshots/task-list.jpg)
 
 ### ➕ Add Task Form
-![Add Task](screenshots/add-task.png)
+![Add Task](screenshots/add-task.jpg)
 
 ### 📝 Edit Task Form
-![Edit Task](screenshots/edit-task.png)
+![Edit Task](screenshots/edit-task.jpg)
 
 ### ❌ Delete Confirmation
-![Delete Task](screenshots/delete-task.png)
+![Delete Task](screenshots/delete-task.jpg)
 
 ## 🚀 Setup & Run
 
