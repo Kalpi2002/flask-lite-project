@@ -54,12 +54,19 @@ project_root/
 
 ### ➕ Add Task Form
 ![Add Task](screenshots/add-task.jpg)
+![Add Task](screenshots/add-task1.jpg)
+
+### 🔍 Search Tasks
+![Search](screenshots/search-task.jpg)
 
 ### 📝 Edit Task Form
 ![Edit Task](screenshots/edit-task.jpg)
+![Edit Task](screenshots/edit-task1.jpg)
 
 ### ❌ Delete Confirmation
 ![Delete Task](screenshots/delete-task.jpg)
+![Delete Task](screenshots/delete-task1.jpg)
+
 
 ## 🚀 Setup & Run
 
