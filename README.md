@@ -9,7 +9,7 @@ The project is built using **Flask, SQLAlchemy, SQLite, Jinja2, and Bootstrap 5*
 
 - K.E.Kumarasinghe (Team Lead) - ASP/2022/149
 - R.M.C.N. Abeyvickrama - ASP/2022/152
-- Monali Dissanayake - ASB/2022/169
+- G.A.M.A. Dissanayake - ASB/2022/169
 - P.N. Wickramarathna - ASP/2022/137
 - W.D.N.O.Wanniarachchi - ASP/2022/142
 
@@ -32,20 +32,42 @@ The project is built using **Flask, SQLAlchemy, SQLite, Jinja2, and Bootstrap 5*
 - Database seeding with sample tasks  
 
 ## Project Structure
--project_root/
--├─ app.py # Flask app with routes
--├─ models.py # SQLAlchemy Task model
--├─ seed.py # Seed script to populate DB
--├─ requirements.txt # Project dependencies
--├─ README.md # This file
--├─ .gitignore
--├─ templates/
--│ -├─ base.html
--│ -├─ list.html
--│ -├─ form.html
--│ -└─ delete_confirm.html
--└─ static/ # Optional for CSS/JS
-  
+~~~
+project_root/
+├─ app.py # Flask app with routes
+├─ models.py # SQLAlchemy Task model
+├─ seed.py # Seed script to populate DB
+├─ requirements.txt # Project dependencies
+├─ README.md # This file
+├─ .gitignore
+├─ templates/
+│ ├─ base.html
+│ ├─ list.html
+│ ├─ form.html
+│ └─ delete_confirm.html
+└─ static/ # Optional for CSS/JS
+~~~
+## 📸 Screenshots
+
+### 🏠 Task List Page
+![Task List](screenshots/task-list.jpg)
+
+### ➕ Add Task Form
+![Add Task](screenshots/add-task.jpg)
+![Add Task](screenshots/add-task1.jpg)
+
+### 🔍 Search Tasks
+![Search](screenshots/search-task.jpg)
+
+### 📝 Edit Task Form
+![Edit Task](screenshots/edit-task.jpg)
+![Edit Task](screenshots/edit-task1.jpg)
+
+### ❌ Delete Confirmation
+![Delete Task](screenshots/delete-task.jpg)
+![Delete Task](screenshots/delete-task1.jpg)
+
+
 ## 🚀 Setup & Run
 
 1.  **Clone the repository**
@@ -81,14 +103,14 @@ The project is built using **Flask, SQLAlchemy, SQLite, Jinja2, and Bootstrap 5*
     python app.py
     ```
     The application will be running at `http://127.0.0.1:5000`.
-    Open in browser http://127.0.0.1:5000/tasks
+   
     
 ## 🚀 Contribution Table
 
 - Member	                  -Contribution
 - K.E. Kumarasinghe (Lead)	-Repo setup, DB config, seed script, README, Create form
 - R.M.C.N. Abeyvickrama	    -Edit form, Templates & CSS
-- Monali Dissanayake	      -Search/filter functionality
+- G.A.M.A. Dissanayake     -Search/filter functionality
 - P.N. Wickramarathna	      -List page layout & functionality
 - W.D.N.O. Wanniarachchi	  -Delete feature with confirmation
 
