@@ -115,6 +115,35 @@ project_root/
 - G.A.M.A. Dissanayake     -Search/filter functionality
 - P.N. Wickramarathna	      -List page layout & functionality
 - W.D.N.O. Wanniarachchi	  -Delete feature with confirmation
+  
+📋 Project Board
+
+We use a GitHub Project Board to track the progress of the Flask Lite Project.  
+All tasks/features are represented as cards and linked to their respective branches and issues.  
+
+**Columns:**
+- Completed: All implemented features are here.  
+- (Optional) Tasks Planned / In Progress can be used for ongoing work.  
+
+**Tasks & Features:**
+
+| Task / Feature | Branch | Status | Notes |
+|----------------|--------|--------|------|
+| Create form | feature/create-form | Completed | Merged into main |
+| Edit form | feature/edit-form | Completed | Merged into main |
+| List page | feature/list-page | Completed | Merged into main |
+| Search/Filter | feature/search-filter | Completed | Merged into main |
+| Delete task | feature/delete-task | Completed | Merged into main |
+| Template CSS | feature/template-css | Completed | Merged into main |
+| Update README.md | n/a | Completed | Documentation finalized |
+| Database seeding | n/a | Completed | Seeded sample data |
+| Flash messages | n/a | Completed | Success/error notifications |
+
+Each feature has an **Issue** for tracking and is linked to its **branch** for traceability.  
+The board provides a visual roadmap of the project workflow, helping the team stay organized and ensuring all tasks are completed.
+
+📌 **Access:** The Project Board can be viewed [here](https://github.com/Kalpi2002/flask-lite-project/projects) (private repository, instructor access granted).
+
 
 ## 📈 Progress Log
 
