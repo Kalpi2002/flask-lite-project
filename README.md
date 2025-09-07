@@ -60,6 +60,7 @@ project_root/
 
 ### 🔍 Search Tasks
 ![Search](screenshots/search-task.jpg)
+![Search](screenshots/search-task1.jpg)
 
 ### 📝 Edit Task Form
 ![Edit Task](screenshots/edit-task.jpg)
