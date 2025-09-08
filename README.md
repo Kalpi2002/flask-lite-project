@@ -23,8 +23,9 @@ The project includes a single core entity with full CRUD functionality, simple v
 
 1.  **Clone the repository**
     ```bash
-    git clone https://github.com/KushanLakshitha/Flask-Lite-Group-Project
-    cd Flask-Lite-Group-Project
+    
+    git clone https://github.com/Kalpi2002/flask-lite-project
+    cd flask-lite-project
     ```
 
 2.  **Create and activate a virtual environment**
